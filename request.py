@@ -1,6 +1,8 @@
 import csv
 import requests
 import time
+NOMBRE_ARCHIVO = 'archivo.csv'
+
 def busqueda(folio):
     url = f"https://infracciones.lapaz.gob.mx/infracciones/json?f=getList&q={folio}"
     headers = {
@@ -44,7 +46,8 @@ def busqueda(folio):
         return f"Error: {response.status_code}"
 
 def modificador_csv():
-    with open('archivo.csv', mode='r', newline='') as infile:
+    global NOMBRE_ARCHIVO
+    with open(NOMBRE_ARCHIVO, mode='r', newline='') as infile:
         reader = csv.DictReader(infile)
         rows = []    
         for row in reader:
